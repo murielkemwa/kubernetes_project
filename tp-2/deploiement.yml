@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: formation-k8s
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-color
+  template:
+    metadata:
+      labels:
+        app: web-color
+    spec:
+      containers:
+      - name: container-nginx
+        image: nginx:latest
+        env:
+        - name: APP_COLOR
+          value: "red"
